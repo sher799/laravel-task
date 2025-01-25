@@ -5,7 +5,8 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('is_admin');
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');

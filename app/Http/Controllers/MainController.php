@@ -14,10 +14,12 @@ class MainController extends Controller
 
     public function dashboard()
     {
-        $applications=Application::paginate(10);
 
 
-        return view('dashboard')->with('applications',$applications);
+
+        return view('dashboard')->with([
+            'applications'=>Application::latest()->paginate(10),
+        ]);
     }
 
 

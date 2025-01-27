@@ -12,7 +12,7 @@
 
                     @if(auth()->user()->role->name == 'manager')
                         <span class="text-blue-500 font-bold text-xl"> You're manager! </span>
-
+@dd($applications)
                         <div
                             class="relative flex w-400 max-w-[12rem] flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
                             <div class="relative mx-0 mt-4 flex items-center gap-4 overflow-hidden rounded-xl bg-transparent bg-clip-border
@@ -80,20 +80,21 @@
                         <div class="container mx-auto py-8">
                             <h1 class="text-2xl font-bold mb-6 text-center">Submit your application</h1>
 
-                            <form action="" method="post" enctype="multipart/form-data"
+                            <form action="{{route('applications.store')}}" method="POST" enctype="multipart/form-data"
                                   class="w-full max-w-sm mx-auto bg-white p-8 rounded-md shadow-md">
+                                  @csrf
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2" for="name">SUBJECT</label>
                                     <input
                                         class="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                                        type="text" id="name" name="subject" placeholder="">
+                                        type="text" id="name" name="subject" placeholder="" required>
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2"
                                            for="email">MESSAGE</label>
                                     <textarea rows="5"
                                               class="w-full px-3 py-2 row-auto border border-gray-300 rounded-md focus:outline-none focus:border-indigo-500"
-                                              type="text" id="email" name="message" placeholder=""></textarea>
+                                              type="text" id="email" name="message" placeholder="" required></textarea>
                                 </div>
                                 <div class="mb-4">
                                     <label class="block text-gray-700 text-sm font-bold mb-2"

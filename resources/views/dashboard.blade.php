@@ -52,7 +52,8 @@
                                     <hr>
                                 </div>
                         @endforeach
-                </div>
+               {{$applications->links()}}
+                    </div>
 
                 <div class="w-full pt-5 px-4 mb-8 mx-auto mt-3">
                     <div class="text-sm text-gray-700 py-1">

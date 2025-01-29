@@ -31,7 +31,6 @@ class ApplicationCreated extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('abdunabievserzod@gmail.com', 'Sherzod'),
              subject: 'Application Created',
         );
     }
@@ -53,8 +52,6 @@ class ApplicationCreated extends Mailable
      */
     public function attachments(): array
     {
-        return [
-            Attachment::fromPath($this->application->file_url),
-        ];
+        return [];
     }
 }

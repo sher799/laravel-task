@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SenEmailJob;
 use App\Mail\ApplicationCreated;
 use App\Models\Application;
 use App\Models\User;
+use Illuminate\Bus\Dispatcher;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -37,10 +39,8 @@ class ApplicationController extends Controller
             'file_url'=>$file_name ?? null
         ]);
 
-        $manager=User::find(1);
-
-        Mail::to($manager)->send(new ApplicationCreated($application));
-
+       
+        SenEmailJob::dispatch($application);
 
         return redirect()->back();
 

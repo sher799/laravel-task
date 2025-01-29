@@ -25,12 +25,12 @@
                                         <div class="flex items-center justify-between">
                                             <h5
                                                 class="block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                                {{ $application->user->name }}      #{{$application->id}}
+                                                {{ $application->user->name }} #{{ $application->id }}
                                             </h5>
-                                          
+
                                             <div class="5 flex items-center gap-0">
-                                                <span>{{$application->created_at}}</span>
-                                                </div>
+                                                <span>{{ $application->created_at }}</span>
+                                            </div>
                                         </div>
                                         <p
                                             class="block font-sans text-base font-light leading-relaxed text-blue-gray-900 antialiased">
@@ -51,9 +51,10 @@
                                     </p>
                                     <hr>
                                 </div>
+                            </div>
                         @endforeach
-               {{$applications->links()}}
-                    </div>
+                        {{ $applications->links() }}
+                </div>
 
                 <div class="w-full pt-5 px-4 mb-8 mx-auto mt-3">
                     <div class="text-sm text-gray-700 py-1">

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
 use App\Jobs\SenEmailJob;
 use App\Mail\ApplicationCreated;
 use App\Models\Application;
@@ -39,8 +40,8 @@ class ApplicationController extends Controller
             'file_url'=>$file_name ?? null
         ]);
 
-       
-        SenEmailJob::dispatch($application);
+       SendEmailJob::dispatch($application);
+
 
         return redirect()->back();
 

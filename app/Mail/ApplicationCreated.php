@@ -4,21 +4,20 @@ namespace App\Mail;
 
 use App\Models\Application;
 use Illuminate\Bus\Queueable;
-use Illuminate\Mail\Mailables\Address;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use Illuminate\Mail\Mailables\Address;
 use Illuminate\Mail\Mailables\Attachment;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
+
 class ApplicationCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-  
     public $application;
-
 
     public function __construct(Application $application)
     {
@@ -31,7 +30,8 @@ class ApplicationCreated extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-             subject: 'Application Created',
+            from: new Address('abdunabievserzod@gmail.com', 'sherzod'),
+            subject: 'Order Shipped',
         );
     }
 
@@ -41,7 +41,7 @@ class ApplicationCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.mail',
+            view: 'email.mail',
         );
     }
 
@@ -50,8 +50,10 @@ class ApplicationCreated extends Mailable
      *
      * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
-    public function attachments(): array
+    public function attachments(Application $application): array
     {
-        return [];
+        return [
+            Attachment::fromPath($application->file_url),
+        ];
     }
 }

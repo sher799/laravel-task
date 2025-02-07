@@ -18,6 +18,7 @@ class ApplicationCreated extends Mailable
     use Queueable, SerializesModels;
 
     public $application;
+    
 
     public function __construct(Application $application)
     {
@@ -30,8 +31,7 @@ class ApplicationCreated extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('abdunabievserzod@gmail.com', 'sherzod'),
-            subject: 'Order Shipped',
+            subject: $this->application,
         );
     }
 
@@ -41,7 +41,7 @@ class ApplicationCreated extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.mail',
+            view: 'emails.mail',
         );
     }
 
@@ -53,7 +53,7 @@ class ApplicationCreated extends Mailable
     public function attachments(Application $application): array
     {
         return [
-            Attachment::fromPath($application->file_url),
+            Attachment::fromPath($this->application->file_url),
         ];
     }
 }

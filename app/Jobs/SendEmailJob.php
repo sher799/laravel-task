@@ -16,7 +16,7 @@ class SendEmailJob implements ShouldQueue
 
     public $application;
 
-    public function __construct(Application $application)
+    public function __construct($application)
     {
         $this->application=$application;
     }
@@ -24,10 +24,9 @@ class SendEmailJob implements ShouldQueue
     /**
      * Execute the job.
      */
-    public function handle(Application $application, User $user): void
+    public function handle(): void      
     {
 
-        $manager=User::first();
-        Mail::to($manager)->send(new ApplicationCreated($application));
+        Mail::to('abdunabievserzod@gmail')->send(new ApplicationCreated($this->application));
     }
 }

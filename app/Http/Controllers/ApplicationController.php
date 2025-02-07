@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreApplicationRequest;
 use App\Jobs\SendEmailJob;
 use App\Jobs\SenEmailJob;
 use App\Mail\ApplicationCreated;
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Mail;
 
 class ApplicationController extends Controller
 {
-    public function store(Request $request)
+    public function store(StoreApplicationRequest $request)
     {
        
        
@@ -33,13 +34,6 @@ class ApplicationController extends Controller
 
                 $request->file('file')->storeAs('file',$file_name);
         }
-
-
-        $request->validate([
-            'subject'=>'required|max:255',
-            'message'=>'required|min:10',
-            'file'=>'file|mimes:jpg,pnd,png'
-        ]);
 
 
         $application=Application::create([

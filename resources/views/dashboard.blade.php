@@ -4,7 +4,7 @@
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Loopple/loopple-public-assets@main/riva-dashboard-tailwind/riva-dashboard.css">
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-20 border-6">
             <div class="bg-white bg-2 dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -78,8 +78,15 @@
                                     class="block font-sans ml-3 text-base font-light leading-relaxed text-blue-gray-900 antialiased">
                                     {{ $application->user->email }}
                                 </p>
+                                <div class="flex justify-end">
+                                    <a href="{{ route('answer.create', ['application' => $application->id]) }}"
+                                        class="bg-info hover:bg-secondary Active text-black text-sm py-2 px-4 mr-2 mb-2 rounded-xl transition duration-300">
+                                        Answer
+                                    </a>
+                                </div>
                             </div>
                         @endforeach
+
                         {{ $applications->links() }}
                 </div>
 
@@ -94,7 +101,7 @@
                 </div>
             @else
                 <div class="text-2xl font-bold mb-6">
-                 <span>You're client</span>
+                    <span>You're client</span>
                 </div>
                 @if (session()->has('error'))
                     <div class="flex bg-yellow-100 rounded-lg p-4 mb-4 text-sm text-yellow-700" role="alert">
